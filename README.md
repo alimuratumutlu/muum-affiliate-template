@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BilgeAdam Store Project
 
-## Getting Started
+## Overview
+
+This project is a Next.js/React.js web application that reads product data from a JSON URL, displays a list of products, allows filtering and sorting of products, and provides statistical insights on the products.
 
 First, run the development server:
 
@@ -10,29 +12,63 @@ npm run dev
 yarn dev
 # or
 pnpm dev
+# or
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Development Checklist
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Setup and Initial Configuration
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [x] Initialize the project with `create-next-app`.
+- [x] Set up a basic folder structure (components, pages, styles, utils, etc.).
+- [x] Install necessary dependencies (e.g., React, Next.js, TypeScript, Tailwind CSS).
+- [x] Set up linting and formatting tools (ESLint, Prettier).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Core Features
 
-## Learn More
+- [x] Implement the `fetchData` utility function for data fetching.
+- [x] Create a custom `useData` hook for handling fetched data.
+- [ ] Develop the `/productList` page to display products.
+  - [ ] Ensure the product list is responsive and adjusts based on display width.
+- [ ] Implement product filtering by size.
+- [ ] Implement product sorting by price.
+- [ ] Develop the `/statistics` page to display statistical data about the products.
+  - [ ] Determine the brand with the most products under 40 EUR.
+  - [ ] Find out which brand offers the largest selection of sizes.
+  - [ ] Calculate the brand with the lowest average price for size “32”.
 
-To learn more about Next.js, take a look at the following resources:
+### Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [x] Set up and configure Jest and Testing Library for testing components and hooks.
+- [x] Write unit tests for the `fetchData` utility function.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Styling
 
-## Deploy on Vercel
+- [ ] Apply styling using Tailwind CSS.
+- [ ] Ensure UI/UX is user-friendly and accessible.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Documentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] Document the project setup and how to run it.
+- [ ] Add comments and documentation within the code for clarity.
+
+### Deployment
+
+- [ ] Set up deployment (e.g., Vercel, Netlify).
+- [ ] Ensure the application is properly deployed and accessible online.
+
+### Optimization and Refinement
+
+- [ ] Optimize performance where necessary.
+- [ ] Refactor code for better readability and maintainability.
+
+## Running the Project
+
+- Detailed instructions on how to run the project locally.
+
+## Contributing
+
+- Guidelines for how to contribute to the project.
