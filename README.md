@@ -22,10 +22,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Setup and Initial Configuration
 
-- [ ] Initialize the project with `create-next-app`.
-- [ ] Set up a basic folder structure (components, pages, styles, utils, etc.).
-- [ ] Install necessary dependencies (e.g., React, Next.js, TypeScript, Tailwind CSS).
-- [ ] Set up linting and formatting tools (ESLint, Prettier).
+- [x] Initialize the project with `create-next-app`.
+- [x] Set up a basic folder structure (components, pages, styles, utils, etc.).
+- [x] Install necessary dependencies (e.g., React, Next.js, TypeScript, Mantine UI).
 
 ### Core Features
 
