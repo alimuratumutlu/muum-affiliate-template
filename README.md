@@ -28,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Core Features
 
-- [ ] Implement the `fetchData` utility function for data fetching.
+- [x] Implement the `fetchData` utility function for data fetching.
 - [ ] Create a custom `useData` hook for handling fetched data.
 - [ ] Develop the `/productList` page to display products.
   - [ ] Ensure the product list is responsive and adjusts based on display width.
