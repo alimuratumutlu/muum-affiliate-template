@@ -22,15 +22,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Setup and Initial Configuration
 
-- [x] Initialize the project with `create-next-app`.
-- [x] Set up a basic folder structure (components, pages, styles, utils, etc.).
-- [x] Install necessary dependencies (e.g., React, Next.js, TypeScript, Tailwind CSS).
-- [x] Set up linting and formatting tools (ESLint, Prettier).
+- [ ] Initialize the project with `create-next-app`.
+- [ ] Set up a basic folder structure (components, pages, styles, utils, etc.).
+- [ ] Install necessary dependencies (e.g., React, Next.js, TypeScript, Tailwind CSS).
+- [ ] Set up linting and formatting tools (ESLint, Prettier).
 
 ### Core Features
 
-- [x] Implement the `fetchData` utility function for data fetching.
-- [x] Create a custom `useData` hook for handling fetched data.
+- [ ] Implement the `fetchData` utility function for data fetching.
+- [ ] Create a custom `useData` hook for handling fetched data.
 - [ ] Develop the `/productList` page to display products.
   - [ ] Ensure the product list is responsive and adjusts based on display width.
 - [ ] Implement product filtering by size.
@@ -42,8 +42,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Testing
 
-- [x] Set up and configure Jest and Testing Library for testing components and hooks.
-- [x] Write unit tests for the `fetchData` utility function.
+- [ ] Set up and configure Jest and Testing Library for testing components and hooks.
+- [ ] Write unit tests for the `fetchData` utility function.
 
 ### Styling
 
