@@ -22,6 +22,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppShell, MantineProvider } from "@mantine/core";
 
 import { theme } from "@/styles/theme";
+import { HeaderSearch } from "@/components/Header/Header.component";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [queryClient] = useState(() => new QueryClient());
@@ -30,7 +31,10 @@ export default function App({ Component, pageProps }: AppProps) {
 		<QueryClientProvider client={queryClient}>
 			<HydrationBoundary state={pageProps.dehydratedState}>
 				<MantineProvider theme={theme} defaultColorScheme="dark">
-					<AppShell>
+					<AppShell header={{ height: 60 }}>
+						<AppShell.Header>
+							<HeaderSearch />
+						</AppShell.Header>
 						<Component {...pageProps} />
 					</AppShell>
 				</MantineProvider>
