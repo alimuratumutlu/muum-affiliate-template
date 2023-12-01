@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [x] Implement the `fetchData` utility function for data fetching.
 - [x] Implement the `React-Query` for server state.
-- [ ] Develop the `/productList` page to display products.
+- [x] Develop the `/productList` page to display products.
   - [ ] Ensure the product list is responsive and adjusts based on display width.
 - [ ] Implement product filtering by size.
 - [ ] Implement product sorting by price.
@@ -46,7 +46,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Styling
 
-- [ ] Apply styling using Tailwind CSS.
+- [x] Apply styling using CSS Modules.
 - [ ] Ensure UI/UX is user-friendly and accessible.
 
 ### Documentation
@@ -56,7 +56,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Deployment
 
-- [ ] Set up deployment (e.g., Vercel, Netlify).
+- [x] Set up deployment (e.g., Vercel, Netlify).
 - [ ] Ensure the application is properly deployed and accessible online.
 
 ### Optimization and Refinement
