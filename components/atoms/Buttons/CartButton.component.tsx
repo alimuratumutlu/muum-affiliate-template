@@ -8,6 +8,8 @@ export default function CartButton() {
 		<Button
 			radius="md"
 			style={{ flex: 1 }}
+			variant="gradient"
+			gradient={{ from: "blue", to: "pink", deg: 236 }}
 			rightSection={<IconShoppingCartCheck size="0.9rem" />}
 		>
 			Add to Cart
