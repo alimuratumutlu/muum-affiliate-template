@@ -47,17 +47,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Styling
 
 - [x] Apply styling using CSS Modules.
-- [ ] Ensure UI/UX is user-friendly and accessible.
+- [x] Ensure UI/UX is user-friendly and accessible.
 
 ### Documentation
 
-- [ ] Document the project setup and how to run it.
-- [ ] Add comments and documentation within the code for clarity.
+- [x] Document the project setup and how to run it.
+- [x] Add comments and documentation within the code for clarity.
 
 ### Deployment
 
 - [x] Set up deployment (e.g., Vercel, Netlify).
-- [ ] Ensure the application is properly deployed and accessible online.
+- [x] Ensure the application is properly deployed and accessible online.
 
 ### Optimization and Refinement
 

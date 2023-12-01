@@ -55,3 +55,29 @@
 		font-size: var(--mantine-font-size-md);
 	}
 }
+
+.controls {
+	margin-top: var(--mantine-spacing-lg);
+	display: flex;
+	justify-content: center;
+
+	@media (max-width: 30em) {
+		flex-direction: column;
+	}
+}
+
+.control {
+	&:not(:first-of-type) {
+		margin-left: var(--mantine-spacing-md);
+	}
+
+	@media (max-width: 30em) {
+		height: rem(42px);
+		font-size: var(--mantine-font-size-md);
+
+		&:not(:first-of-type) {
+			margin-top: var(--mantine-spacing-md);
+			margin-left: 0;
+		}
+	}
+}

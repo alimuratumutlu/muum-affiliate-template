@@ -1,4 +1,5 @@
-import { Title, Text, Button, Input, Container } from "@mantine/core";
+/* eslint-disable react/no-unescaped-entities */
+import { Title, Text, Button, Container } from "@mantine/core";
 import { Dots } from "./Hero.dots";
 
 import classes from "./Hero.module.css";
@@ -13,7 +14,7 @@ export function HeroText() {
 
 			<div className={classes.inner}>
 				<Title className={classes.title}>
-					Easy to Explore{" "}
+					Open Source{" "}
 					<Text component="span" className={classes.highlight} inherit>
 						Fashion Store
 					</Text>{" "}
@@ -36,6 +37,27 @@ export function HeroText() {
 						possibilities that technology brings to enhance this expression.
 					</Text>
 				</Container>
+
+				{/*TODO: Update the urls for the buttons*/}
+
+				<div className={classes.controls}>
+					<Button
+						className={classes.control}
+						size="lg"
+						variant="default"
+						color="gray"
+					>
+						See on Gitbub
+					</Button>
+					<Button
+						className={classes.control}
+						size="lg"
+						variant="gradient"
+						gradient={{ from: "blue", to: "cyan", deg: 226 }}
+					>
+						Muum ?
+					</Button>
+				</div>
 			</div>
 		</Container>
 	);
