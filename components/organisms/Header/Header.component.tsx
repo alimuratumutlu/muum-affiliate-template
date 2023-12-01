@@ -16,7 +16,7 @@ import cx from "clsx";
 import { HeaderRoutes } from "@/routes/HeaderRoutes";
 
 import classes from "./Header.module.css";
-import Logo from "../Logo/Logo.component";
+import Logo from "../../atoms/Logo/Logo.component";
 
 export function HeaderSearch() {
 	const [opened, { toggle }] = useDisclosure(false);
