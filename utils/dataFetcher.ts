@@ -1,4 +1,4 @@
-export const fetchData = async <T>(url: string): Promise<T | null> => {
+export const dataFetcher = async <T>(url: string): Promise<T | null> => {
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
