@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
 	));
 
 	return (
-		<Card withBorder radius="md" className={classes.card}>
+		<Card withBorder radius="md" className={classes.card} shadow="lg">
 			<Card.Section className={classes.imageSection}>
 				<Image src={product.images[0]} alt="Tesla Model S" />
 			</Card.Section>

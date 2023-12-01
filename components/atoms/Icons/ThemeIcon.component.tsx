@@ -6,7 +6,7 @@ import {
 import { IconSun, IconMoon } from "@tabler/icons-react";
 import cx from "clsx";
 
-import classes from "./ThemeIcon.module.css";
+import classes from "@/styles/Icons.module.css";
 
 export default function ThemeIcon() {
 	const { setColorScheme } = useMantineColorScheme();

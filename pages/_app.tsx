@@ -19,7 +19,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // We are using Mantine UI for this project so we need to wrap our app with the MantineProvider
 // https://mantine.dev/core/getting-started/#mantineprovider
 
-import { AppShell, MantineProvider } from "@mantine/core";
+import { AppShell, Container, MantineProvider } from "@mantine/core";
 
 import { theme } from "@/styles/theme";
 import { HeaderSearch } from "@/components/organisms/Header/Header.component";
@@ -35,7 +35,9 @@ export default function App({ Component, pageProps }: AppProps) {
 						<AppShell.Header>
 							<HeaderSearch />
 						</AppShell.Header>
-						<Component {...pageProps} />
+						<Container size={1400} style={{ minHeight: "calc(100vh - 80px)" }}>
+							<Component {...pageProps} />
+						</Container>
 					</AppShell>
 				</MantineProvider>
 			</HydrationBoundary>
