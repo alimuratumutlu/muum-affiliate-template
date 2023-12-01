@@ -2,17 +2,17 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Center, Grid, Text, Paper, Container } from "@mantine/core";
 
-import { HeroText } from "@/components/Hero/Hero.component";
+import { HeroText } from "@/components/organisms/Hero/Hero.component";
+import { ProductCard } from "@/components/molecules/ProductCard/ProductCard.component";
 
 interface Product {
 	id: string | number;
 	brand: string;
-	name: string;
 	description: string;
 	images: string[];
 	priceO: number;
 	priceR: number;
-	size: string[];
+	sizes: string[];
 }
 
 const fetchProducts = async () => {
@@ -46,19 +46,17 @@ const ProductList = () => {
 					</Paper>
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, md: 6, lg: 9, xl: 9 }} pb="xl">
-					<Paper shadow="lg" p="xl">
-						{" "}
-						<ul>
-							{data.map((product: Product, index: number) => (
-								<li key={product.id}>
-									<div>
-										<span>{index + 1}. </span>
-										<a href="#">{product.brand}</a>
-									</div>
-								</li>
-							))}
-						</ul>
-					</Paper>
+					<Grid>
+						{data.map((product: Product, index: number) => (
+							<Grid.Col
+								key={product.id}
+								span={{ base: 12, md: 4, lg: 4, xl: 4 }}
+								pb="md"
+							>
+								<ProductCard product={product} />
+							</Grid.Col>
+						))}
+					</Grid>
 				</Grid.Col>
 			</Grid>
 		</Container>

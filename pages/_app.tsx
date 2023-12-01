@@ -22,7 +22,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppShell, MantineProvider } from "@mantine/core";
 
 import { theme } from "@/styles/theme";
-import { HeaderSearch } from "@/components/Header/Header.component";
+import { HeaderSearch } from "@/components/organisms/Header/Header.component";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [queryClient] = useState(() => new QueryClient());
