@@ -1,36 +1,15 @@
-import Link from "next/link";
-
-import {
-	Autocomplete,
-	ActionIcon,
-	useMantineColorScheme,
-	useComputedColorScheme,
-	Group,
-	Burger,
-	rem,
-} from "@mantine/core";
+import { Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch, IconSun, IconMoon } from "@tabler/icons-react";
-import cx from "clsx";
 
-import { HeaderRoutes } from "@/routes/HeaderRoutes";
+import Logo from "@/components/atoms/Logo/Logo.component";
+import ThemeIcon from "@/components/atoms/Icons/ThemeIcon.component";
 
 import classes from "./Header.module.css";
-import Logo from "../../atoms/Logo/Logo.component";
+import AutoComplete from "@/components/molecules/AutoComplete/AutoComplete.component";
+import HeaderLinks from "@/components/molecules/HeaderLinks/HeaderLinks.component";
 
 export function HeaderSearch() {
 	const [opened, { toggle }] = useDisclosure(false);
-
-	const { setColorScheme } = useMantineColorScheme();
-	const computedColorScheme = useComputedColorScheme("light", {
-		getInitialValueInEffect: true,
-	});
-
-	const items = HeaderRoutes.map((link) => (
-		<Link key={link.label} href={link.link} className={classes.link}>
-			{link.label}
-		</Link>
-	));
 
 	return (
 		<header className={classes.header}>
@@ -41,44 +20,11 @@ export function HeaderSearch() {
 				</Group>
 
 				<Group>
-					<Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
-						{items}
+					<Group ml={50} gap={5} visibleFrom="sm">
+						<HeaderLinks />
 					</Group>
-					{/* TODO: Apply the search component */}
-					<Autocomplete
-						className={classes.search}
-						placeholder="Search brand or product"
-						leftSection={
-							<IconSearch
-								style={{ width: rem(16), height: rem(16) }}
-								stroke={1.5}
-							/>
-						}
-						data={[
-							"T-Shirt",
-							"Wellensteyn",
-							"REVIEW",
-							"Wollmantel",
-							"s.Oliver Premium",
-							"Neo Noir",
-							"Laona",
-							"Apricot",
-							"Mariposa",
-						]}
-						visibleFrom="xs"
-					/>
-					<ActionIcon
-						onClick={() =>
-							setColorScheme(computedColorScheme === "light" ? "dark" : "light")
-						}
-						variant="default"
-						size="lg"
-						p="xs"
-						aria-label="Toggle color scheme"
-					>
-						<IconSun className={cx(classes.icon, classes.light)} stroke={2.5} />
-						<IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
-					</ActionIcon>
+					<AutoComplete />
+					<ThemeIcon />
 				</Group>
 			</div>
 		</header>

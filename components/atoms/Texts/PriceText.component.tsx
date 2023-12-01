@@ -2,12 +2,12 @@ import React from "react";
 
 import { Text } from "@mantine/core";
 
-interface ProductPriceProps {
+interface PriceTextProps {
 	priceR: number;
 	priceO: number;
 }
 
-export default function ProductPrice({ priceO, priceR }: ProductPriceProps) {
+export default function PriceText({ priceO, priceR }: PriceTextProps) {
 	// We handle some edge cases here. For example, if the original price is the same as the reduced price, we will just return the original price. If the reduced price is not a number, undefined or null, we will just return the original price. If the original price is less than the reduced price, maybe by mistake, we will just return the original price.
 
 	if (priceO === priceR || typeof priceR !== "number" || priceO < priceR) {

@@ -1,21 +1,9 @@
-import {
-	Card,
-	Image,
-	Text,
-	Group,
-	Badge,
-	Center,
-	Button,
-	Box,
-} from "@mantine/core";
-import {
-	IconGasStation,
-	IconGauge,
-	IconManualGearbox,
-	IconUsers,
-} from "@tabler/icons-react";
+import { Card, Image, Text, Group, Center, Box } from "@mantine/core";
+
+import PriceText from "@/components/atoms/Texts/PriceText.component";
+import CartButton from "@/components/atoms/Buttons/CartButton.component";
+
 import classes from "./ProductCard.module.css";
-import ProductPrice from "../../atoms/ProductPrice/ProductPrice.component";
 
 interface ProductCardProps {
 	product: {
@@ -68,11 +56,8 @@ export function ProductCard({ product }: ProductCardProps) {
 
 			<Card.Section className={classes.section}>
 				<Group gap={30}>
-					<ProductPrice priceO={product.priceO} priceR={product.priceR} />
-
-					<Button radius="xl" style={{ flex: 1 }}>
-						Add to Cart
-					</Button>
+					<PriceText priceO={product.priceO} priceR={product.priceR} />
+					<CartButton />
 				</Group>
 			</Card.Section>
 		</Card>
