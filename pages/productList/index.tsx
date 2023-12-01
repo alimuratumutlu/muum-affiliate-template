@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Center } from "@mantine/core";
 
 interface Product {
 	id: string | number;
@@ -21,13 +22,14 @@ const fetchProducts = async () => {
 };
 
 const ProductList = () => {
-	const { isPending, isError, data, error } = useQuery({
+	const { isPending, isError, data, error, isLoading } = useQuery({
 		queryKey: ["products"],
 		queryFn: fetchProducts,
 	});
 
 	if (isPending) return <div>Loading</div>;
 	if (isError) return <div>{error.message}</div>;
+	if (isLoading) return <Center>Loading</Center>;
 
 	return (
 		<section>
