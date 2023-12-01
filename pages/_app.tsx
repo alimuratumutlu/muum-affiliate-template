@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 
 import { useState } from "react";
