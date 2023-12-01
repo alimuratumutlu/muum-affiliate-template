@@ -7,7 +7,7 @@ import classes from "./ProductCard.module.css";
 
 interface ProductCardProps {
 	product: {
-		id: string | number;
+		id: string;
 		brand: string;
 		description: string;
 		images: string[];
@@ -57,7 +57,7 @@ export function ProductCard({ product }: ProductCardProps) {
 			<Card.Section className={classes.section}>
 				<Group gap={30}>
 					<PriceText priceO={product.priceO} priceR={product.priceR} />
-					<CartButton />
+					<CartButton id={product.id} />
 				</Group>
 			</Card.Section>
 		</Card>

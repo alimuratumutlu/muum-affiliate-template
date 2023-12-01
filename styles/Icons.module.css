@@ -22,3 +22,21 @@
 		display: block;
 	}
 }
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: rem(18px);
+	border-radius: var(--mantine-radius-sm);
+	font-size: var(--mantine-font-size-xs);
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+	background-color: var(--mantine-color-red-6);
+	color: var(--mantine-color-red-1);
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	border-radius: 50%;
+}
