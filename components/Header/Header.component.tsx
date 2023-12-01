@@ -1,8 +1,17 @@
 import Link from "next/link";
 
-import { Autocomplete, Group, Burger, rem } from "@mantine/core";
+import {
+	Autocomplete,
+	ActionIcon,
+	useMantineColorScheme,
+	useComputedColorScheme,
+	Group,
+	Burger,
+	rem,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch, IconSun, IconMoon } from "@tabler/icons-react";
+import cx from "clsx";
 
 import { HeaderRoutes } from "@/routes/HeaderRoutes";
 
@@ -11,6 +20,11 @@ import Logo from "../Logo/Logo.component";
 
 export function HeaderSearch() {
 	const [opened, { toggle }] = useDisclosure(false);
+
+	const { setColorScheme } = useMantineColorScheme();
+	const computedColorScheme = useComputedColorScheme("light", {
+		getInitialValueInEffect: true,
+	});
 
 	const items = HeaderRoutes.map((link) => (
 		<Link key={link.label} href={link.link} className={classes.link}>
@@ -53,6 +67,18 @@ export function HeaderSearch() {
 						]}
 						visibleFrom="xs"
 					/>
+					<ActionIcon
+						onClick={() =>
+							setColorScheme(computedColorScheme === "light" ? "dark" : "light")
+						}
+						variant="default"
+						size="lg"
+						p="xs"
+						aria-label="Toggle color scheme"
+					>
+						<IconSun className={cx(classes.icon, classes.light)} stroke={2.5} />
+						<IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+					</ActionIcon>
 				</Group>
 			</div>
 		</header>
