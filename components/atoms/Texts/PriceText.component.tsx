@@ -23,7 +23,7 @@ export default function PriceText({ priceO, priceR }: PriceTextProps) {
 
 	return (
 		<div>
-			<Text fz="xl" fw={700} style={{ lineHeight: 1 }}>
+			<Text fz="xl" fw={700} style={{ lineHeight: 1 }} c="red">
 				{"$"}
 				{priceR}
 			</Text>
