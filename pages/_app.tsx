@@ -2,6 +2,7 @@ import "@mantine/core/styles.css";
 
 import { useState } from "react";
 import type { AppProps } from "next/app";
+import { Provider as ReduxProvider } from "react-redux";
 
 // Server State is the data that is managed by the server and is typically dynamic. It can be things like user data, product listings, etc. Server State is often fetched and used by client-side applications to display up-to-date information.
 // https://react-query.tanstack.com/guides/ssr#hydration
@@ -22,26 +23,33 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppShell, Container, MantineProvider } from "@mantine/core";
 
 import { theme } from "@/styles/theme";
+import { store } from "@/store";
+
 import { HeaderSearch } from "@/components/organisms/Header/Header.component";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [queryClient] = useState(() => new QueryClient());
 
 	return (
-		<QueryClientProvider client={queryClient}>
-			<HydrationBoundary state={pageProps.dehydratedState}>
-				<MantineProvider theme={theme} defaultColorScheme="dark">
-					<AppShell header={{ height: 80 }}>
-						<AppShell.Header>
-							<HeaderSearch />
-						</AppShell.Header>
-						<Container size={1400} style={{ minHeight: "calc(100vh - 80px)" }}>
-							<Component {...pageProps} />
-						</Container>
-					</AppShell>
-				</MantineProvider>
-			</HydrationBoundary>
-			<ReactQueryDevtools />
-		</QueryClientProvider>
+		<ReduxProvider store={store}>
+			<QueryClientProvider client={queryClient}>
+				<HydrationBoundary state={pageProps.dehydratedState}>
+					<MantineProvider theme={theme} defaultColorScheme="dark">
+						<AppShell header={{ height: 80 }}>
+							<AppShell.Header>
+								<HeaderSearch />
+							</AppShell.Header>
+							<Container
+								size={1400}
+								style={{ minHeight: "calc(100vh - 80px)" }}
+							>
+								<Component {...pageProps} />
+							</Container>
+						</AppShell>
+					</MantineProvider>
+				</HydrationBoundary>
+				<ReactQueryDevtools />
+			</QueryClientProvider>
+		</ReduxProvider>
 	);
 }
