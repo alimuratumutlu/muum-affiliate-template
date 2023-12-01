@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<QueryClientProvider client={queryClient}>
 			<HydrationBoundary state={pageProps.dehydratedState}>
 				<MantineProvider theme={theme} defaultColorScheme="dark">
-					<AppShell header={{ height: 60 }}>
+					<AppShell header={{ height: 80 }}>
 						<AppShell.Header>
 							<HeaderSearch />
 						</AppShell.Header>

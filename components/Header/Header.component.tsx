@@ -7,6 +7,7 @@ import { IconSearch } from "@tabler/icons-react";
 import { HeaderRoutes } from "@/routes/HeaderRoutes";
 
 import classes from "./Header.module.css";
+import Logo from "../Logo/Logo.component";
 
 export function HeaderSearch() {
 	const [opened, { toggle }] = useDisclosure(false);
@@ -22,7 +23,7 @@ export function HeaderSearch() {
 			<div className={classes.inner}>
 				<Group>
 					<Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-					Logo
+					<Logo />
 				</Group>
 
 				<Group>
