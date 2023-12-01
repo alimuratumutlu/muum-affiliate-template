@@ -1,6 +1,8 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Center } from "@mantine/core";
+import { Center, Grid, Text, Paper, Container } from "@mantine/core";
+
+import { HeroText } from "@/components/Hero/Hero.component";
 
 interface Product {
 	id: string | number;
@@ -32,18 +34,34 @@ const ProductList = () => {
 	if (isLoading) return <Center>Loading</Center>;
 
 	return (
-		<section>
-			<ul>
-				{data.map((product: Product, index: number) => (
-					<li key={product.id}>
-						<div>
-							<span>{index + 1}. </span>
-							<a href="#">{product.brand}</a>
-						</div>
-					</li>
-				))}
-			</ul>
-		</section>
+		<Container fluid>
+			<HeroText />
+			<Grid pt="xl">
+				<Grid.Col span={{ base: 12, md: 6, lg: 3, xl: 3 }} pb="xl">
+					<Paper shadow="lg" p="xl">
+						<Text>
+							Use it to create cards, dropdowns, modals and other components
+							that require background with shadow
+						</Text>
+					</Paper>
+				</Grid.Col>
+				<Grid.Col span={{ base: 12, md: 6, lg: 9, xl: 9 }} pb="xl">
+					<Paper shadow="lg" p="xl">
+						{" "}
+						<ul>
+							{data.map((product: Product, index: number) => (
+								<li key={product.id}>
+									<div>
+										<span>{index + 1}. </span>
+										<a href="#">{product.brand}</a>
+									</div>
+								</li>
+							))}
+						</ul>
+					</Paper>
+				</Grid.Col>
+			</Grid>
+		</Container>
 	);
 };
 
