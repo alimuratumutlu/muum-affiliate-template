@@ -17,24 +17,25 @@ export default function DiscountIcon({ priceO, priceR }: DiscountIconProps) {
 	// This is because we don't want to render the icon if the priceO and priceR are not numbers.
 	if (typeof priceR !== "number" || typeof priceO !== "number") return null;
 
+	const iconColor = discount > 50 ? "#4CAF50" : "#FFC107";
+
 	return (
 		<div style={{ position: "absolute", top: 5, left: 5 }}>
 			<IconStar
 				size={75}
-				fill={"#FFC107"}
-				style={{
-					/* we are turning the icon 90 degree */ transform: "rotate(-90deg)",
-				}}
+				fill={iconColor}
+				style={{ transform: "rotate(-90deg)" }}
 				stroke={0}
 			/>
 			<Text
-				size="md"
+				size="sm"
 				style={{
 					position: "absolute",
-					top: 24,
-					right: 20,
+					top: 26,
+					right: 22,
 					transform: "rotate(-25deg)",
 				}}
+				c={"white"}
 				fw={600}
 			>
 				{discount}
