@@ -43,7 +43,7 @@ export default function CartButton({ id }: CartButtonProps) {
 			}
 			onClick={() => handleAddToCart(id)}
 		>
-			{isItemInCart ? "In Cart" : "Add to Cart"}
+			{isItemInCart ? "In Cart" : "Add"}
 		</Button>
 	);
 }
