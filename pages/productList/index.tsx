@@ -6,7 +6,7 @@ import { HeroText } from "@/components/organisms/Hero/Hero.component";
 import { ProductCard } from "@/components/molecules/ProductCard/ProductCard.component";
 
 interface Product {
-	id: string | number;
+	id: string;
 	brand: string;
 	description: string;
 	images: string[];
@@ -37,7 +37,7 @@ const ProductList = () => {
 		<Container fluid>
 			<HeroText />
 			<Grid pt="xl">
-				<Grid.Col span={{ base: 12, md: 6, lg: 3, xl: 3 }} pb="xl">
+				<Grid.Col span={{ base: 12, sm: 4, md: 3, lg: 3, xl: 3 }} pb="xl">
 					<Paper shadow="lg" p="xl">
 						<Text>
 							Use it to create cards, dropdowns, modals and other components
@@ -45,12 +45,12 @@ const ProductList = () => {
 						</Text>
 					</Paper>
 				</Grid.Col>
-				<Grid.Col span={{ base: 12, md: 6, lg: 9, xl: 9 }} pb="xl">
+				<Grid.Col span={{ base: 12, sm: 8, md: 9, lg: 9, xl: 9 }} pb="xl">
 					<Grid>
 						{data.map((product: Product, index: number) => (
 							<Grid.Col
 								key={product.id}
-								span={{ base: 12, md: 4, lg: 4, xl: 4 }}
+								span={{ base: 12, sm: 6, md: 4, lg: 4, xl: 3 }}
 								pb="md"
 							>
 								<ProductCard product={product} />
