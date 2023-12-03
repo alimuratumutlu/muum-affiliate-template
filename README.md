@@ -31,7 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] Implement the `fetchData` utility function for data fetching.
 - [x] Implement the `React-Query` for server state.
 - [x] Develop the `/productList` page to display products.
-  - [ ] Ensure the product list is responsive and adjusts based on display width.
+  - [x] Ensure the product list is responsive and adjusts based on display width.
 - [ ] Implement product filtering by size.
 - [ ] Implement product sorting by price.
 - [ ] Develop the `/statistics` page to display statistical data about the products.

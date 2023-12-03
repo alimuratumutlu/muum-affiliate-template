@@ -1,61 +1,57 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { Grid, Container } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import { Center, Grid, Text, Paper, Container } from "@mantine/core";
 
 import { HeroText } from "@/components/organisms/Hero/Hero.component";
-import { ProductCard } from "@/components/molecules/ProductCard/ProductCard.component";
+import { Filter } from "@/components/organisms/Filter/Filter.component";
+import Listing from "@/components/organisms/Listing/Listing.component";
+import { CardSkeleton } from "@/components/molecules/CardSkeleton/CardSkeleton.component";
 
-interface Product {
-	id: string;
-	brand: string;
-	description: string;
-	images: string[];
-	priceO: number;
-	priceR: number;
-	sizes: string[];
-}
+import { getProducts } from "@/utils/dataFetchers";
 
-const fetchProducts = async () => {
-	const response = await fetch("api/products");
-	if (!response.ok) {
-		throw new Error("Network response was not ok");
-	}
-	return response.json();
-};
+import { Product } from "@/types";
+import { TopFilter } from "@/components/molecules/TopFilter/TopFilter.component";
 
 const ProductList = () => {
-	const { isPending, isError, data, error, isLoading } = useQuery({
+	const { isError, data, error, isLoading } = useQuery({
 		queryKey: ["products"],
-		queryFn: fetchProducts,
+		queryFn: getProducts,
 	});
 
-	if (isPending) return <div>Loading</div>;
-	if (isError) return <div>{error.message}</div>;
-	if (isLoading) return <Center>Loading</Center>;
+	const uniqueBrands: Set<string> = useMemo(() => {
+		const brands = data?.map((product: Product) => product.brand);
+		return new Set(brands);
+	}, [data]);
+
+	const uniqueSizes: Set<string> = useMemo(() => {
+		const sizes = data?.map((product: Product) => product.sizes).flat();
+		return new Set(sizes);
+	}, [data]);
+
+	if (isError) return <div>Error: {error.message}</div>;
 
 	return (
 		<Container fluid>
 			<HeroText />
 			<Grid pt="xl">
 				<Grid.Col span={{ base: 12, sm: 4, md: 3, lg: 3, xl: 3 }} pb="xl">
-					<Paper shadow="lg" p="xl">
-						<Text>
-							Use it to create cards, dropdowns, modals and other components
-							that require background with shadow
-						</Text>
-					</Paper>
+					<Filter brands={uniqueBrands} sizes={uniqueSizes} />
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, sm: 8, md: 9, lg: 9, xl: 9 }} pb="xl">
+					<TopFilter />
 					<Grid>
-						{data.map((product: Product, index: number) => (
-							<Grid.Col
-								key={product.id}
-								span={{ base: 12, sm: 6, md: 4, lg: 4, xl: 3 }}
-								pb="md"
-							>
-								<ProductCard product={product} />
-							</Grid.Col>
-						))}
+						{isLoading && (
+							<>
+								{Array.from({ length: 12 }, (_, i) => i + 1).map(
+									(index: number) => (
+										<CardSkeleton key={index} />
+									)
+								)}
+							</>
+						)}
+						{!isLoading && data && (
+							<Listing products={data} isLoading={isLoading} />
+						)}
 					</Grid>
 				</Grid.Col>
 			</Grid>
