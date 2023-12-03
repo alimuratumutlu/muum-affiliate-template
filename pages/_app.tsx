@@ -1,4 +1,5 @@
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
 import { useState } from "react";
 import type { AppProps } from "next/app";
@@ -21,6 +22,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // https://mantine.dev/core/getting-started/#mantineprovider
 
 import { AppShell, Container, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 import { theme } from "@/styles/theme";
 import { store } from "@/store";
@@ -35,6 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<QueryClientProvider client={queryClient}>
 				<HydrationBoundary state={pageProps.dehydratedState}>
 					<MantineProvider theme={theme} defaultColorScheme="light">
+						<Notifications />
 						<AppShell header={{ height: 80 }}>
 							<AppShell.Header>
 								<HeaderSearch />

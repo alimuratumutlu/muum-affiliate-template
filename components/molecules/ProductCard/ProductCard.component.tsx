@@ -1,10 +1,15 @@
+import { useMemo } from "react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Text, Group, Box, Select } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 
 import PriceText from "@/components/atoms/Texts/PriceText.component";
 import CartButton from "@/components/atoms/Buttons/CartButton.component";
 import DiscountIcon from "@/components/atoms/Icons/DiscountIcon.component";
+
+import { addToCart, selectCart } from "@/store/cart/cartSlice";
 
 import classes from "./ProductCard.module.css";
 import { Product } from "@/types";
@@ -14,6 +19,22 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+	const dispatch = useDispatch();
+	const cart = useSelector(selectCart);
+	const isItemInCart = cart.items[product.id] !== undefined;
+
+	const [buttonStartColor, buttonEndColor] = useMemo(() => {
+		return isItemInCart ? ["green", "gray"] : ["blue", "pink"];
+	}, [isItemInCart]);
+
+	const handleAddToCart = (id: string) => {
+		dispatch(addToCart(id));
+		notifications.show({
+			title: product.description,
+			message: "Successfully added to cart!",
+		});
+	};
+
 	return (
 		<Card withBorder radius="md" className={classes.card} shadow="lg">
 			<Card.Section className={classes.imageSection}>
@@ -51,7 +72,12 @@ export function ProductCard({ product }: ProductCardProps) {
 			<Card.Section className={classes.section}>
 				<Group gap={10}>
 					<PriceText priceO={product.priceO} priceR={product.priceR} />
-					<CartButton id={product.id} />
+					<CartButton
+						title={isItemInCart ? "In Cart" : "Add"}
+						startColor={buttonStartColor}
+						endColor={buttonEndColor}
+						onClick={() => handleAddToCart(product.id)}
+					/>
 				</Group>
 			</Card.Section>
 		</Card>

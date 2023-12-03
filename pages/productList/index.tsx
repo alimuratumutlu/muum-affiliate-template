@@ -14,6 +14,8 @@ import { selectFilter } from "@/store/filter/filterSlice";
 
 import { Product } from "@/types";
 
+// TODO: Draw a diagram of the data flow in this component
+
 const ProductList = () => {
 	const { isError, data, error, isLoading } = useQuery({
 		queryKey: ["products"],
