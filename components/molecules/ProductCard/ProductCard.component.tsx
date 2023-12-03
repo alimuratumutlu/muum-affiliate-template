@@ -19,6 +19,8 @@ interface ProductCardProps {
 }
 
 // TODO: Add a loader while the item is being added to the cart
+// TODO: Selected size will be on the cart
+// TODO: Thumbnail will be on the cart
 
 export function ProductCard({ product }: ProductCardProps) {
 	const dispatch = useDispatch();

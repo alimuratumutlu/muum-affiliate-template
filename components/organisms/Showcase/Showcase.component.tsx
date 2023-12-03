@@ -4,11 +4,11 @@ import { ProductCard } from "@/components/molecules/ProductCard/ProductCard.comp
 
 import { Product } from "@/types";
 
-interface ListingProps {
+interface ShowcaseProps {
 	products: Product[];
 }
 
-export function Listing({ products }: ListingProps) {
+export function Showcase({ products }: ShowcaseProps) {
 	return (
 		<>
 			{products?.map((product: Product, index: number) => (
