@@ -1,4 +1,4 @@
-import { Paper, Box, Checkbox } from "@mantine/core";
+import { Paper, Box, Checkbox, Text } from "@mantine/core";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -25,7 +25,9 @@ export default function BrandFilter({ brands }: BrandFilterProps) {
 
 	return (
 		<>
-			<h3>Brands</h3>
+			<Text fw={600} size="1.17em">
+				Brands
+			</Text>
 			<Paper shadow="lg" px="sm" pt="md" pb="sm" mb="lg">
 				<Box>
 					{

@@ -1,4 +1,4 @@
-import { Paper, Box, Checkbox, Divider, Flex } from "@mantine/core";
+import { Paper, Box, Checkbox, Divider, Flex, Text } from "@mantine/core";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -39,7 +39,9 @@ export default function SizeFilter({
 
 	return (
 		<>
-			<h3>Available Sizes</h3>
+			<Text fw={600} size="1.17em" pt="xl">
+				Available Sizes
+			</Text>
 			<Paper shadow="lg" px="sm" pb="md">
 				<h4>Numeric Sizes</h4>
 				<Flex wrap="wrap" gap={5}>

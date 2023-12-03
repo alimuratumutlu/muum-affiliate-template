@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Grid, Container } from "@mantine/core";
+import { Grid, Container, Text } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 
@@ -103,6 +103,9 @@ const ProductList = () => {
 					<Filter brands={uniqueBrands} sizes={uniqueSizes} />
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, sm: 9, md: 9, lg: 10, xl: 10 }} pb="xl">
+					<Text fw={600}>
+						{!isLoading && filteredAndSortedProducts?.length} results listed
+					</Text>{" "}
 					<TopFilter />
 					<Grid>
 						{isLoading && (

@@ -1,4 +1,4 @@
-import { Grid } from "@mantine/core";
+import { Grid, Text } from "@mantine/core";
 
 import { ProductCard } from "@/components/molecules/ProductCard/ProductCard.component";
 
