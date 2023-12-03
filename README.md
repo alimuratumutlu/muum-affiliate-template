@@ -61,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Optimization and Refinement
 
-- [ ] Optimize performance where necessary.
+- [x] Optimize performance where necessary.
 - [ ] Refactor code for better readability and maintainability.
 
 ## Running the Project
