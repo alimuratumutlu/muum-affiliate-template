@@ -1,9 +1,20 @@
 import { Autocomplete, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { selectFilter, setSearchTerm } from "@/store/filter/filterSlice";
 
 /* TODO: Apply the search component */
 
 export default function AutoComplete() {
+	const dispatch = useDispatch();
+
+	const filterState = useSelector(selectFilter);
+
+	const handleSearchChange = (value: string) => {
+		dispatch(setSearchTerm(value));
+	};
+
 	return (
 		<Autocomplete
 			placeholder="Search brand or product"
@@ -22,6 +33,8 @@ export default function AutoComplete() {
 				"Mariposa",
 			]}
 			visibleFrom="xs"
+			onChange={handleSearchChange}
+			value={filterState.searchTerm}
 		/>
 	);
 }

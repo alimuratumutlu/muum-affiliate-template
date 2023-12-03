@@ -34,24 +34,58 @@ const ProductList = () => {
 		return new Set(sizes);
 	}, [data]);
 
-	const filteredProducts = useMemo(() => {
-		return data?.filter((product: Product) => {
+	const filteredAndSortedProducts = useMemo(() => {
+		const filtered = data?.filter((product: Product) => {
 			const brandMatches =
 				filterState.brands.length === 0 ||
 				filterState.brands.includes(product.brand);
+
 			const numericSizeMatches =
 				filterState.sizesNumeric.length === 0 ||
 				product.sizes.some((size) => filterState.sizesNumeric.includes(size));
+
 			const letterSizeMatches =
 				filterState.sizesLetter.length === 0 ||
 				product.sizes.some((size) => filterState.sizesLetter.includes(size));
-			return brandMatches && numericSizeMatches && letterSizeMatches;
+
+			const searchTermMatches =
+				!filterState.searchTerm ||
+				product.brand
+					.toLowerCase()
+					.includes(filterState.searchTerm.toLowerCase()) ||
+				(product.brand &&
+					product.description
+						.toLowerCase()
+						.includes(filterState.searchTerm.toLowerCase()));
+
+			return (
+				brandMatches &&
+				numericSizeMatches &&
+				letterSizeMatches &&
+				searchTermMatches
+			);
 		});
+
+		const getPrice = (product: Product) => product.priceR ?? product.priceO;
+
+		if (filterState.sortByPrice === "asc") {
+			return filtered.sort(
+				(a: Product, b: Product) => getPrice(a) - getPrice(b)
+			);
+		} else if (filterState.sortByPrice === "desc") {
+			return filtered.sort(
+				(a: Product, b: Product) => getPrice(b) - getPrice(a)
+			);
+		}
+
+		return filtered;
 	}, [
 		data,
 		filterState.brands,
 		filterState.sizesLetter,
 		filterState.sizesNumeric,
+		filterState.searchTerm,
+		filterState.sortByPrice,
 	]);
 
 	if (isError) return <div>Error: {error.message}</div>;
@@ -75,8 +109,8 @@ const ProductList = () => {
 								)}
 							</>
 						)}
-						{!isLoading && filteredProducts && (
-							<Listing products={filteredProducts} />
+						{!isLoading && filteredAndSortedProducts && (
+							<Listing products={filteredAndSortedProducts} />
 						)}
 					</Grid>
 				</Grid.Col>

@@ -18,6 +18,8 @@ interface ProductCardProps {
 	product: Product;
 }
 
+// TODO: Add a loader while the item is being added to the cart
+
 export function ProductCard({ product }: ProductCardProps) {
 	const dispatch = useDispatch();
 	const cart = useSelector(selectCart);

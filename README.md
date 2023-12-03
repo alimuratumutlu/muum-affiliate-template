@@ -32,8 +32,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] Implement the `React-Query` for server state.
 - [x] Develop the `/productList` page to display products.
   - [x] Ensure the product list is responsive and adjusts based on display width.
-- [ ] Implement product filtering by size.
-- [ ] Implement product sorting by price.
+- [x] Implement product filtering by size.
+- [x] Implement product sorting by price.
 - [ ] Develop the `/statistics` page to display statistical data about the products.
   - [ ] Determine the brand with the most products under 40 EUR.
   - [ ] Find out which brand offers the largest selection of sizes.

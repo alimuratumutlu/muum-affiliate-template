@@ -6,6 +6,8 @@ interface FilterState {
 	brands: string[];
 	sizesNumeric: string[];
 	sizesLetter: string[];
+	searchTerm?: string;
+	sortByPrice?: "asc" | "desc" | undefined;
 }
 
 // Define the initial state using that type
@@ -13,6 +15,8 @@ const initialState: FilterState = {
 	brands: [],
 	sizesNumeric: [],
 	sizesLetter: [],
+	searchTerm: undefined,
+	sortByPrice: undefined,
 };
 
 export const filterSlice = createSlice({
@@ -53,10 +57,21 @@ export const filterSlice = createSlice({
 			const letterSize = action.payload;
 			state.sizesLetter = state.sizesLetter.filter((s) => s !== letterSize);
 		},
+		setSearchTerm: (state, action: PayloadAction<string>) => {
+			state.searchTerm = action.payload;
+		},
+		setSortByPrice: (
+			state,
+			action: PayloadAction<"asc" | "desc" | undefined>
+		) => {
+			state.sortByPrice = action.payload;
+		},
 		resetFilters: (state) => {
 			state.brands = [];
 			state.sizesNumeric = [];
 			state.sizesLetter = [];
+			state.searchTerm = undefined;
+			state.sortByPrice = undefined;
 		},
 	},
 });
@@ -68,6 +83,8 @@ export const {
 	removeFromNumericSizeFilter,
 	addToLetterSizeFilter,
 	removeFromLetterSizeFilter,
+	setSearchTerm,
+	setSortByPrice,
 	resetFilters,
 } = filterSlice.actions;
 

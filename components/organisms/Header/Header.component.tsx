@@ -3,11 +3,11 @@ import { useDisclosure } from "@mantine/hooks";
 
 import Logo from "@/components/atoms/Logo/Logo.component";
 import ThemeIcon from "@/components/atoms/Icons/ThemeIcon.component";
-
-import classes from "./Header.module.css";
 import AutoComplete from "@/components/molecules/AutoComplete/AutoComplete.component";
 import HeaderLinks from "@/components/molecules/HeaderLinks/HeaderLinks.component";
 import CartIcon from "@/components/atoms/Icons/CartIcon.component";
+
+import classes from "./Header.module.css";
 
 export function HeaderSearch() {
 	const [opened, { toggle }] = useDisclosure(false);
