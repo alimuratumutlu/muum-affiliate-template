@@ -27,7 +27,7 @@ export default function CartIcon() {
 	const cart = useSelector(selectCart);
 
 	// Function to handle item removal
-	const handleRemoveFromCart = (id) => {
+	const handleRemoveFromCart = (id: string) => {
 		dispatch(removeFromCart(id));
 	};
 
@@ -92,7 +92,7 @@ export default function CartIcon() {
 							</Text>
 						</Stack>
 					) : (
-						<Text size="xs">Cart is empty</Text>
+						<Text size="xs">Your cart is empty. Start shopping!</Text>
 					)}
 				</Popover.Dropdown>
 			</Indicator>
