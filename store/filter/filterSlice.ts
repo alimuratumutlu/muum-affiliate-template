@@ -4,13 +4,15 @@ import { RootState } from "..";
 // Define a type for the slice state
 interface FilterState {
 	brands: string[];
-	sizes: string[];
+	sizesNumeric: string[];
+	sizesLetter: string[];
 }
 
 // Define the initial state using that type
 const initialState: FilterState = {
 	brands: [],
-	sizes: [],
+	sizesNumeric: [],
+	sizesLetter: [],
 };
 
 export const filterSlice = createSlice({
@@ -29,20 +31,32 @@ export const filterSlice = createSlice({
 			const brand = action.payload;
 			state.brands = state.brands.filter((b) => b !== brand);
 		},
-		addToSizeFilter: (state, action: PayloadAction<string>) => {
-			const size = action.payload;
-			if (state.sizes.includes(size)) {
+		addToNumericSizeFilter: (state, action: PayloadAction<string>) => {
+			const numericSize = action.payload;
+			if (state.sizesNumeric.includes(numericSize)) {
 				return;
 			}
-			state.sizes.push(size);
+			state.sizesNumeric.push(numericSize);
 		},
-		removeFromSizeFilter: (state, action: PayloadAction<string>) => {
-			const size = action.payload;
-			state.sizes = state.sizes.filter((s) => s !== size);
+		removeFromNumericSizeFilter: (state, action: PayloadAction<string>) => {
+			const numericSize = action.payload;
+			state.sizesNumeric = state.sizesNumeric.filter((s) => s !== numericSize);
+		},
+		addToLetterSizeFilter: (state, action: PayloadAction<string>) => {
+			const letterSize = action.payload;
+			if (state.sizesLetter.includes(letterSize)) {
+				return;
+			}
+			state.sizesLetter.push(letterSize);
+		},
+		removeFromLetterSizeFilter: (state, action: PayloadAction<string>) => {
+			const letterSize = action.payload;
+			state.sizesLetter = state.sizesLetter.filter((s) => s !== letterSize);
 		},
 		resetFilters: (state) => {
 			state.brands = [];
-			state.sizes = [];
+			state.sizesNumeric = [];
+			state.sizesLetter = [];
 		},
 	},
 });
@@ -50,8 +64,10 @@ export const filterSlice = createSlice({
 export const {
 	addToBrandFilter,
 	removeFromBrandFilter,
-	addToSizeFilter,
-	removeFromSizeFilter,
+	addToNumericSizeFilter,
+	removeFromNumericSizeFilter,
+	addToLetterSizeFilter,
+	removeFromLetterSizeFilter,
 	resetFilters,
 } = filterSlice.actions;
 

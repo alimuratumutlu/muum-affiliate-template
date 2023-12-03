@@ -1,22 +1,26 @@
 import React, { useMemo } from "react";
 import { Grid, Container } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 import { HeroText } from "@/components/organisms/Hero/Hero.component";
 import { Filter } from "@/components/organisms/Filter/Filter.component";
-import Listing from "@/components/organisms/Listing/Listing.component";
+import { Listing } from "@/components/organisms/Listing/Listing.component";
 import { CardSkeleton } from "@/components/molecules/CardSkeleton/CardSkeleton.component";
+import { TopFilter } from "@/components/molecules/TopFilter/TopFilter.component";
 
 import { getProducts } from "@/utils/dataFetchers";
+import { selectFilter } from "@/store/filter/filterSlice";
 
 import { Product } from "@/types";
-import { TopFilter } from "@/components/molecules/TopFilter/TopFilter.component";
 
 const ProductList = () => {
 	const { isError, data, error, isLoading } = useQuery({
 		queryKey: ["products"],
 		queryFn: getProducts,
 	});
+
+	const filterState = useSelector(selectFilter);
 
 	const uniqueBrands: Set<string> = useMemo(() => {
 		const brands = data?.map((product: Product) => product.brand);
@@ -27,6 +31,26 @@ const ProductList = () => {
 		const sizes = data?.map((product: Product) => product.sizes).flat();
 		return new Set(sizes);
 	}, [data]);
+
+	const filteredProducts = useMemo(() => {
+		return data?.filter((product: Product) => {
+			const brandMatches =
+				filterState.brands.length === 0 ||
+				filterState.brands.includes(product.brand);
+			const numericSizeMatches =
+				filterState.sizesNumeric.length === 0 ||
+				product.sizes.some((size) => filterState.sizesNumeric.includes(size));
+			const letterSizeMatches =
+				filterState.sizesLetter.length === 0 ||
+				product.sizes.some((size) => filterState.sizesLetter.includes(size));
+			return brandMatches && numericSizeMatches && letterSizeMatches;
+		});
+	}, [
+		data,
+		filterState.brands,
+		filterState.sizesLetter,
+		filterState.sizesNumeric,
+	]);
 
 	if (isError) return <div>Error: {error.message}</div>;
 
@@ -49,8 +73,8 @@ const ProductList = () => {
 								)}
 							</>
 						)}
-						{!isLoading && data && (
-							<Listing products={data} isLoading={isLoading} />
+						{!isLoading && filteredProducts && (
+							<Listing products={filteredProducts} />
 						)}
 					</Grid>
 				</Grid.Col>

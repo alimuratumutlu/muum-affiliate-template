@@ -1,16 +1,14 @@
 import { Grid } from "@mantine/core";
 
 import { ProductCard } from "@/components/molecules/ProductCard/ProductCard.component";
-import { TopFilter } from "@/components/molecules/TopFilter/TopFilter.component";
 
 import { Product } from "@/types";
 
 interface ListingProps {
 	products: Product[];
-	isLoading: boolean;
 }
 
-export default function Listing({ products, isLoading }: ListingProps) {
+export function Listing({ products }: ListingProps) {
 	return (
 		<>
 			{products?.map((product: Product, index: number) => (
