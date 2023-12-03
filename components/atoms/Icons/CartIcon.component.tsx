@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { IconShoppingCartBolt } from "@tabler/icons-react";
+import { useSelector, useDispatch } from "react-redux";
+import { IconShoppingCartBolt, IconTrash } from "@tabler/icons-react";
 import {
 	Popover,
 	Text,
@@ -7,20 +7,29 @@ import {
 	Indicator,
 	Divider,
 	Stack,
+	ActionIcon,
+	Flex,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-import { selectCart } from "@/store/cart/cartSlice";
+import { selectCart, removeFromCart } from "@/store/cart/cartSlice";
 
 import cx from "clsx";
 
 import classes from "@/styles/Icons.module.css";
 
 export default function CartIcon() {
+	const dispatch = useDispatch();
+
 	const [opened, { close, open }] = useDisclosure(false);
 
 	// Accessing the cart state
 	const cart = useSelector(selectCart);
+
+	// Function to handle item removal
+	const handleRemoveFromCart = (id) => {
+		dispatch(removeFromCart(id));
+	};
 
 	// Calculating the total item count and total price
 	let itemCount = 0;
@@ -65,11 +74,17 @@ export default function CartIcon() {
 					{itemCount > 0 ? (
 						<Stack gap="xs">
 							{cartItems.map((item) => (
-								<div key={item.id}>
+								<Flex key={item.id} justify="space-between">
 									<Text size="sm">
 										{item.name} - {item.count} x ${item.price.toFixed(2)}
 									</Text>
-								</div>
+									<ActionIcon
+										onClick={() => handleRemoveFromCart(item.id)}
+										size="xs"
+									>
+										<IconTrash size={16} />
+									</ActionIcon>
+								</Flex>
 							))}
 							<Divider />
 							<Text size="sm" fw={500}>
