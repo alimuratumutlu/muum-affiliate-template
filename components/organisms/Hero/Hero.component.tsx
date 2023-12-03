@@ -55,7 +55,7 @@ export function HeroText() {
 						variant="gradient"
 						gradient={{ from: "blue", to: "cyan", deg: 226 }}
 					>
-						Muum ?
+						About me
 					</Button>
 				</div>
 			</div>

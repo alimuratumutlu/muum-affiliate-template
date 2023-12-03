@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<ReduxProvider store={store}>
 			<QueryClientProvider client={queryClient}>
 				<HydrationBoundary state={pageProps.dehydratedState}>
-					<MantineProvider theme={theme} defaultColorScheme="dark">
+					<MantineProvider theme={theme} defaultColorScheme="light">
 						<AppShell header={{ height: 80 }}>
 							<AppShell.Header>
 								<HeaderSearch />

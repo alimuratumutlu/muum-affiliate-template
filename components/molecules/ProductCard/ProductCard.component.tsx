@@ -1,38 +1,28 @@
-import {
-	Card,
-	Image,
-	Text,
-	Group,
-	Center,
-	Box,
-	Flex,
-	Select,
-} from "@mantine/core";
-import { Carousel } from "@mantine/carousel";
+import Image from "next/image";
+
+import { Card, Text, Group, Box, Select } from "@mantine/core";
 
 import PriceText from "@/components/atoms/Texts/PriceText.component";
 import CartButton from "@/components/atoms/Buttons/CartButton.component";
-
-import classes from "./ProductCard.module.css";
 import DiscountIcon from "@/components/atoms/Icons/DiscountIcon.component";
 
+import classes from "./ProductCard.module.css";
+import { Product } from "@/types";
+
 interface ProductCardProps {
-	product: {
-		id: string;
-		brand: string;
-		description: string;
-		images: string[];
-		priceO: number;
-		priceR: number;
-		sizes: string[];
-	};
+	product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
 	return (
 		<Card withBorder radius="md" className={classes.card} shadow="lg">
 			<Card.Section className={classes.imageSection}>
-				<Image src={product.images[0]} alt="Tesla Model S" />
+				<Image
+					src={product.images[0]}
+					alt="Tesla Model S"
+					width={300}
+					height={400}
+				/>
 			</Card.Section>
 
 			<DiscountIcon priceO={product.priceO} priceR={product.priceR} />

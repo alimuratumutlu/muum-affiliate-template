@@ -34,10 +34,10 @@ const ProductList = () => {
 		<Container fluid>
 			<HeroText />
 			<Grid pt="xl">
-				<Grid.Col span={{ base: 12, sm: 4, md: 3, lg: 3, xl: 3 }} pb="xl">
+				<Grid.Col span={{ base: 12, sm: 3, md: 3, lg: 2, xl: 2 }} pb="xl">
 					<Filter brands={uniqueBrands} sizes={uniqueSizes} />
 				</Grid.Col>
-				<Grid.Col span={{ base: 12, sm: 8, md: 9, lg: 9, xl: 9 }} pb="xl">
+				<Grid.Col span={{ base: 12, sm: 9, md: 9, lg: 10, xl: 10 }} pb="xl">
 					<TopFilter />
 					<Grid>
 						{isLoading && (
