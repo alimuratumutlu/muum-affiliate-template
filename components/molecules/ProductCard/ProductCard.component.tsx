@@ -27,8 +27,18 @@ export function ProductCard({ product }: ProductCardProps) {
 		return isItemInCart ? ["green", "gray"] : ["blue", "pink"];
 	}, [isItemInCart]);
 
-	const handleAddToCart = (id: string) => {
-		dispatch(addToCart(id));
+	const priceToDisplay = useMemo(() => {
+		return product.priceR ? product.priceR : product.priceO;
+	}, [product.priceR, product.priceO]);
+
+	const handleAddToCart = (id: string, name: string, price: number) => {
+		const productToAdd = {
+			id: id,
+			name: name,
+			price: price,
+		};
+
+		dispatch(addToCart(productToAdd));
 		notifications.show({
 			title: product.description,
 			message: "Successfully added to cart!",
@@ -76,7 +86,9 @@ export function ProductCard({ product }: ProductCardProps) {
 						title={isItemInCart ? "In Cart" : "Add"}
 						startColor={buttonStartColor}
 						endColor={buttonEndColor}
-						onClick={() => handleAddToCart(product.id)}
+						onClick={() =>
+							handleAddToCart(product.id, product.description, priceToDisplay)
+						}
 					/>
 				</Group>
 			</Card.Section>
