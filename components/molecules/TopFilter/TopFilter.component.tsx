@@ -1,16 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Flex, Select, Group, Radio } from "@mantine/core";
+import { Flex, Select, Group, Checkbox } from "@mantine/core";
 
-import CheckboxButton from "@/components/atoms/Buttons/CheckboxButton.component";
-
-import { selectFilter, setSortByPrice } from "@/store/filter/filterSlice"; // Adjust the import path as needed
+import {
+	selectFilter,
+	setShowOnlyDiscounted,
+	setSortByPrice,
+} from "@/store/filter/filterSlice";
 
 // TODO: Discount filtering will be added
 // TODO: Free shipping filtering will be added
 
 export function TopFilter() {
 	const dispatch = useDispatch();
-	const { sortByPrice } = useSelector(selectFilter);
+	const { sortByPrice, showOnlyDiscounted } = useSelector(selectFilter);
+
+	const handleDiscountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		console.log("handleDiscountChange", event.currentTarget.checked);
+		dispatch(setShowOnlyDiscounted(event.currentTarget.checked));
+	};
 
 	const handleSortChange = (value: string | null) => {
 		if (value === "Ascending Price") {
@@ -18,7 +25,6 @@ export function TopFilter() {
 		} else if (value === "Descending Price") {
 			dispatch(setSortByPrice("desc"));
 		} else {
-			// Handle the null case or reset the sorting
 			dispatch(setSortByPrice(undefined));
 		}
 	};
@@ -34,23 +40,25 @@ export function TopFilter() {
 			mb={15}
 		>
 			<Flex gap="md">
-				<Radio.Group name="favoriteFramework" withAsterisk>
-					<Group mt="xs">
-						<CheckboxButton label="Discounted" />
-						<CheckboxButton label="Free Shipping" />
-					</Group>
-				</Radio.Group>
+				<Group mt="xs">
+					<Checkbox
+						value="react"
+						label="Show Only Discounted Products"
+						checked={showOnlyDiscounted}
+						onChange={handleDiscountChange}
+					/>
+				</Group>
 			</Flex>
 			<Flex gap="md">
 				<Select
 					placeholder="Order by price"
-					data={["Ascending Price", "Descending Price"]}
+					data={["Ascending Price", "Descending Price", "Default Order"]}
 					value={
 						sortByPrice === "asc"
 							? "Ascending Price"
 							: sortByPrice === "desc"
 							? "Descending Price"
-							: undefined
+							: "Order by price"
 					}
 					onChange={handleSortChange}
 				/>

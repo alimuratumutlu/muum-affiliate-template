@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Checkbox } from "@mantine/core";
 
 import classes from "@/styles/Buttons.module.css";
@@ -6,23 +5,20 @@ import classes from "@/styles/Buttons.module.css";
 interface CheckboxButtonProps {
 	label: string;
 	checked?: boolean;
+	setChecked?: (checked: boolean) => void;
 }
 
 export default function CheckboxButton({
 	label,
 	checked,
+	setChecked,
 }: CheckboxButtonProps) {
-	const [isChecked, setIsChecked] = useState(false);
-
 	return (
 		<Checkbox
 			className={classes.checkboxButton}
 			label={label}
 			checked={checked}
-			onChange={(event) => setIsChecked(event.currentTarget.checked)}
-			wrapperProps={{
-				onClick: () => setIsChecked((c) => !c),
-			}}
+			onChange={(event) => setChecked?.(event.currentTarget.checked)}
 		/>
 	);
 }

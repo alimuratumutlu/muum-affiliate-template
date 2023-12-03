@@ -7,6 +7,7 @@ interface FilterState {
 	sizesNumeric: string[];
 	sizesLetter: string[];
 	searchTerm?: string;
+	showOnlyDiscounted: boolean;
 	sortByPrice?: "asc" | "desc" | undefined;
 }
 
@@ -16,6 +17,7 @@ const initialState: FilterState = {
 	sizesNumeric: [],
 	sizesLetter: [],
 	searchTerm: undefined,
+	showOnlyDiscounted: false,
 	sortByPrice: undefined,
 };
 
@@ -60,6 +62,9 @@ export const filterSlice = createSlice({
 		setSearchTerm: (state, action: PayloadAction<string>) => {
 			state.searchTerm = action.payload;
 		},
+		setShowOnlyDiscounted: (state, action: PayloadAction<boolean>) => {
+			state.showOnlyDiscounted = action.payload;
+		},
 		setSortByPrice: (
 			state,
 			action: PayloadAction<"asc" | "desc" | undefined>
@@ -72,6 +77,7 @@ export const filterSlice = createSlice({
 			state.sizesLetter = [];
 			state.searchTerm = undefined;
 			state.sortByPrice = undefined;
+			state.showOnlyDiscounted = false;
 		},
 	},
 });
@@ -84,6 +90,7 @@ export const {
 	addToLetterSizeFilter,
 	removeFromLetterSizeFilter,
 	setSearchTerm,
+	setShowOnlyDiscounted,
 	setSortByPrice,
 	resetFilters,
 } = filterSlice.actions;

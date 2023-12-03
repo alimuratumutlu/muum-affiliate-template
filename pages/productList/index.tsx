@@ -58,22 +58,26 @@ const ProductList = () => {
 						.toLowerCase()
 						.includes(filterState.searchTerm.toLowerCase()));
 
+			const discountMatches =
+				!filterState.showOnlyDiscounted || product.priceR < product.priceO;
+
 			return (
 				brandMatches &&
 				numericSizeMatches &&
 				letterSizeMatches &&
-				searchTermMatches
+				searchTermMatches &&
+				discountMatches
 			);
 		});
 
 		const getPrice = (product: Product) => product.priceR ?? product.priceO;
 
 		if (filterState.sortByPrice === "asc") {
-			return filtered.sort(
+			return filtered?.sort(
 				(a: Product, b: Product) => getPrice(a) - getPrice(b)
 			);
 		} else if (filterState.sortByPrice === "desc") {
-			return filtered.sort(
+			return filtered?.sort(
 				(a: Product, b: Product) => getPrice(b) - getPrice(a)
 			);
 		}
@@ -86,6 +90,7 @@ const ProductList = () => {
 		filterState.sizesNumeric,
 		filterState.searchTerm,
 		filterState.sortByPrice,
+		filterState.showOnlyDiscounted,
 	]);
 
 	if (isError) return <div>Error: {error.message}</div>;
