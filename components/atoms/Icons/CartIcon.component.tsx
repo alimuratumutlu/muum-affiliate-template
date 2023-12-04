@@ -1,3 +1,4 @@
+import React, { useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IconShoppingCart, IconTrash } from "@tabler/icons-react";
 import {
@@ -9,6 +10,7 @@ import {
 	Stack,
 	ActionIcon,
 	Flex,
+	Image,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -17,7 +19,6 @@ import { selectCart, removeFromCart } from "@/store/cart/cartSlice";
 import cx from "clsx";
 
 import classes from "@/styles/Icons.module.css";
-import React, { useCallback, useMemo } from "react";
 
 export default function CartIcon() {
 	const dispatch = useDispatch();
@@ -50,14 +51,19 @@ export default function CartIcon() {
 		const itemContent = cartItems.map((item) => (
 			<React.Fragment key={item.id}>
 				<Flex justify="space-between">
-					<Text size="sm">{item.name}</Text>
+					<Flex justify="space-around">
+						<Image src={item.thumbnail} height={50} alt={item.name} mr={10} />
+						<Stack gap="xs">
+							<Text size="sm">{item.name}</Text>
+							<Text size="xs" c="dimmed">
+								€{item.price.toFixed(2)}
+							</Text>
+						</Stack>
+					</Flex>
 					<ActionIcon onClick={() => handleRemoveFromCart(item.id)} size="xs">
 						<IconTrash size={32} />
 					</ActionIcon>
 				</Flex>
-				<Text size="xs" c="gray.6">
-					{item.count} x ${item.price.toFixed(2)}
-				</Text>
 				<Divider />
 			</React.Fragment>
 		));

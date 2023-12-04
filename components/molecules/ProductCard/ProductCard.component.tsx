@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Text, Group, Box, Loader, Select } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
+import { IconX, IconCheck } from "@tabler/icons-react";
 
 import { PriceText, AddtoCartButton, DiscountIcon } from "@/components";
 
@@ -17,14 +18,12 @@ interface ProductCardProps {
 	product: Product;
 }
 
-// TODO: Selected size will be on the cart
-// TODO: Thumbnail will be on the cart
-
 export default function ProductCard({ product }: ProductCardProps) {
 	const dispatch = useDispatch();
 	const cart = useSelector(selectCart);
 
 	const [addingToCart, setAddingToCart] = useState(false);
+	const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
 	const isItemInCart = cart.items[product.id] !== undefined;
 
@@ -36,14 +35,33 @@ export default function ProductCard({ product }: ProductCardProps) {
 		return product.priceR ? product.priceR : product.priceO;
 	}, [product.priceR, product.priceO]);
 
-	const handleAddToCart = async (id: string, name: string, price: number) => {
+	const handleAddToCart = async (
+		id: string,
+		name: string,
+		price: number,
+		size: string | null,
+		thumbnail: string
+	) => {
+		if (selectedSize === null) {
+			notifications.show({
+				color: "red",
+				title: "Please select a size!",
+				message: "You must select a size before adding to cart!",
+			});
+			return;
+		}
+
 		setAddingToCart(true);
 
 		const productToAdd = {
 			id: id,
 			name: name,
 			price: price,
+			size: size,
+			thumbnail: thumbnail,
 		};
+
+		console.log(productToAdd);
 
 		await dispatch(addToCart(productToAdd));
 		setAddingToCart(false);
@@ -85,7 +103,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 					Available Sizes
 				</Text>
 
-				<Select placeholder="Pick your size" data={product.sizes} />
+				<Select
+					placeholder="Pick your size"
+					data={product.sizes}
+					onChange={setSelectedSize}
+				/>
 			</Card.Section>
 
 			<Card.Section className={classes.section}>
@@ -104,7 +126,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 						startColor={buttonStartColor}
 						endColor={buttonEndColor}
 						onClick={() =>
-							handleAddToCart(product.id, product.description, priceToDisplay)
+							handleAddToCart(
+								product.id,
+								product.description,
+								priceToDisplay,
+								selectedSize,
+								product.images[0]
+							)
 						}
 					/>
 				</Group>

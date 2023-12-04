@@ -5,6 +5,8 @@ interface CartItemPayload {
 	id: string;
 	name: string;
 	price: number;
+	size: string | null;
+	thumbnail: string;
 }
 
 // Extend CartItem from CartItemPayload and add the count property
