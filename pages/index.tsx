@@ -6,6 +6,8 @@ import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// TODO: Landing page UI will be added here
+
 export default function Home() {
 	return (
 		<>
