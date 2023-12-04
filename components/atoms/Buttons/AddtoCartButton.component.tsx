@@ -1,11 +1,10 @@
 import { Button } from "@mantine/core";
-
 import { IconShoppingCart } from "@tabler/icons-react";
-
 import classes from "@/styles/Buttons.module.css";
+import React from "react";
 
 interface AddtoCartButtonProps {
-	title: string;
+	title: React.ReactNode;
 	startColor: string;
 	endColor: string;
 	onClick: () => void;

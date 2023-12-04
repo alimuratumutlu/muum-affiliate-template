@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Card, Text, Group, Box, Select } from "@mantine/core";
+import { Card, Text, Group, Box, Loader, Select } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 
 import { PriceText, AddtoCartButton, DiscountIcon } from "@/components";
@@ -17,13 +17,15 @@ interface ProductCardProps {
 	product: Product;
 }
 
-// TODO: Add a loader while the item is being added to the cart
 // TODO: Selected size will be on the cart
 // TODO: Thumbnail will be on the cart
 
 export default function ProductCard({ product }: ProductCardProps) {
 	const dispatch = useDispatch();
 	const cart = useSelector(selectCart);
+
+	const [addingToCart, setAddingToCart] = useState(false);
+
 	const isItemInCart = cart.items[product.id] !== undefined;
 
 	const [buttonStartColor, buttonEndColor] = useMemo(() => {
@@ -34,14 +36,18 @@ export default function ProductCard({ product }: ProductCardProps) {
 		return product.priceR ? product.priceR : product.priceO;
 	}, [product.priceR, product.priceO]);
 
-	const handleAddToCart = (id: string, name: string, price: number) => {
+	const handleAddToCart = async (id: string, name: string, price: number) => {
+		setAddingToCart(true);
+
 		const productToAdd = {
 			id: id,
 			name: name,
 			price: price,
 		};
 
-		dispatch(addToCart(productToAdd));
+		await dispatch(addToCart(productToAdd));
+		setAddingToCart(false);
+
 		notifications.show({
 			title: product.description,
 			message: "Successfully added to cart!",
@@ -86,7 +92,15 @@ export default function ProductCard({ product }: ProductCardProps) {
 				<Group gap={10}>
 					<PriceText priceO={product.priceO} priceR={product.priceR} />
 					<AddtoCartButton
-						title={isItemInCart ? "In Cart" : "Add"}
+						title={
+							isItemInCart ? (
+								"In Cart"
+							) : addingToCart ? (
+								<Loader size="xs" />
+							) : (
+								"Add"
+							)
+						}
 						startColor={buttonStartColor}
 						endColor={buttonEndColor}
 						onClick={() =>
