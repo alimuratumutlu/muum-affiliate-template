@@ -30,6 +30,7 @@ import { theme } from "@/styles/theme";
 import { store } from "@/store";
 
 import { HeaderSearch } from "@/components/organisms/Header/Header.component";
+import { Footer } from "@/components/organisms/Footer/Footer.component";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [queryClient] = useState(() => new QueryClient());
@@ -50,6 +51,9 @@ export default function App({ Component, pageProps }: AppProps) {
 							>
 								<Component {...pageProps} />
 							</Container>
+							<AppShell.Footer>
+								<Footer />
+							</AppShell.Footer>
 						</AppShell>
 					</MantineProvider>
 				</HydrationBoundary>
