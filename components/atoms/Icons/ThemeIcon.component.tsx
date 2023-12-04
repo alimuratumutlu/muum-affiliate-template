@@ -16,12 +16,12 @@ export default function ThemeIcon() {
 
 	return (
 		<ActionIcon
+			p="xs"
+			size="xl"
 			onClick={() =>
 				setColorScheme(computedColorScheme === "light" ? "dark" : "light")
 			}
 			variant="default"
-			size="lg"
-			p="xs"
 			aria-label="Toggle color scheme"
 		>
 			<IconSun className={cx(classes.icon, classes.light)} stroke={2.5} />

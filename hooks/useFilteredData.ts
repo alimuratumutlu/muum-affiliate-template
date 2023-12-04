@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 
 import { getProducts } from "@/utils/dataFetchers";
+import { getPrice } from "@/utils/numbers";
 
 import { selectFilter } from "@/store/filter/filterSlice";
 
@@ -61,8 +62,6 @@ const useFilteredData = () => {
 				discountMatches
 			);
 		});
-
-		const getPrice = (product: Product) => product.priceR ?? product.priceO;
 
 		if (filterState.sortByPrice === "asc") {
 			return filtered?.sort(
