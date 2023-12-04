@@ -41,8 +41,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Testing
 
-- [ ] Set up and configure Jest and Testing Library for testing components and hooks.
-- [ ] Write unit tests for the `fetchData` utility function.
+- [x] Set up and configure Jest and Testing Library for testing components and hooks.
+- [x] Write unit tests for the `fetchData` utility function.
 
 ### Styling
 
