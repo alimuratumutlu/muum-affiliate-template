@@ -1,18 +1,17 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Text, Group, Box, Select } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 
-import PriceText from "@/components/atoms/Texts/PriceText.component";
-import CartButton from "@/components/atoms/Buttons/CartButton.component";
-import DiscountIcon from "@/components/atoms/Icons/DiscountIcon.component";
+import { PriceText, AddtoCartButton, DiscountIcon } from "@/components";
 
 import { addToCart, selectCart } from "@/store/cart/cartSlice";
 
-import classes from "./ProductCard.module.css";
 import { Product } from "@/types";
+
+import classes from "./ProductCard.module.css";
 
 interface ProductCardProps {
 	product: Product;
@@ -22,7 +21,7 @@ interface ProductCardProps {
 // TODO: Selected size will be on the cart
 // TODO: Thumbnail will be on the cart
 
-export function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
 	const dispatch = useDispatch();
 	const cart = useSelector(selectCart);
 	const isItemInCart = cart.items[product.id] !== undefined;
@@ -54,7 +53,7 @@ export function ProductCard({ product }: ProductCardProps) {
 			<Card.Section className={classes.imageSection}>
 				<Image
 					src={product.images[0]}
-					alt="Tesla Model S"
+					alt={product.description}
 					width={300}
 					height={400}
 				/>
@@ -86,7 +85,7 @@ export function ProductCard({ product }: ProductCardProps) {
 			<Card.Section className={classes.section}>
 				<Group gap={10}>
 					<PriceText priceO={product.priceO} priceR={product.priceR} />
-					<CartButton
+					<AddtoCartButton
 						title={isItemInCart ? "In Cart" : "Add"}
 						startColor={buttonStartColor}
 						endColor={buttonEndColor}

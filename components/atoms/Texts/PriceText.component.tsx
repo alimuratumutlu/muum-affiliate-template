@@ -3,8 +3,8 @@ import React from "react";
 import { Text } from "@mantine/core";
 
 interface PriceTextProps {
-	priceR: number;
 	priceO: number;
+	priceR?: number;
 }
 
 export default function PriceText({ priceO, priceR }: PriceTextProps) {

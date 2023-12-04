@@ -34,10 +34,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [x] Ensure the product list is responsive and adjusts based on display width.
 - [x] Implement product filtering by size.
 - [x] Implement product sorting by price.
-- [ ] Develop the `/statistics` page to display statistical data about the products.
-  - [ ] Determine the brand with the most products under 40 EUR.
-  - [ ] Find out which brand offers the largest selection of sizes.
-  - [ ] Calculate the brand with the lowest average price for size “32”.
+- [x] Develop the `/statistics` page to display statistical data about the products.
+  - [x] Determine the brand with the most products under 40 EUR.
+  - [x] Find out which brand offers the largest selection of sizes.
+  - [x] Calculate the brand with the lowest average price for size “32”.
 
 ### Testing
 
@@ -62,12 +62,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Optimization and Refinement
 
 - [x] Optimize performance where necessary.
-- [ ] Refactor code for better readability and maintainability.
-
-## Running the Project
-
-- Detailed instructions on how to run the project locally.
-
-## Contributing
-
-- Guidelines for how to contribute to the project.
+- [x] Refactor code for better readability and maintainability.

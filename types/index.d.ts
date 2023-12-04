@@ -1,10 +1,22 @@
+import React from "react";
+
+export type ReactComponentRenderable =
+	| string
+	| number
+	| boolean
+	| React.ReactElement
+	| Iterable<React.ReactNode>
+	| React.ReactPortal
+	| null
+	| undefined;
+
 export type Product = {
 	id: string;
 	brand: string;
 	description: string;
 	images: string[];
 	priceO: number;
-	priceR: number;
+	priceR?: number;
 	sizes: string[];
 };
 

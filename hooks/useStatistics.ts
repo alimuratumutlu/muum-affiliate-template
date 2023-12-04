@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getProducts } from "@/utils/dataFetchers";
-import { getPrice } from "@/utils/numbers";
+import { getProducts } from "@/utils/getData";
+import { getPrice } from "@/utils/getPrice";
 
 import { Product } from "@/types";
 

@@ -17,7 +17,7 @@ import { selectCart, removeFromCart } from "@/store/cart/cartSlice";
 import cx from "clsx";
 
 import classes from "@/styles/Icons.module.css";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 
 export default function CartIcon() {
 	const dispatch = useDispatch();
@@ -28,18 +28,46 @@ export default function CartIcon() {
 	const cart = useSelector(selectCart);
 
 	// Function to handle item removal
-	const handleRemoveFromCart = (id: string) => {
-		dispatch(removeFromCart(id));
-	};
+	const handleRemoveFromCart = useCallback(
+		(id: string) => {
+			dispatch(removeFromCart(id));
+		},
+		[dispatch]
+	);
 
 	// Calculating the total item count and total price
-	let itemCount = 0;
-	let totalPrice = 0;
-	const cartItems = Object.values(cart.items).map((item) => {
-		itemCount += item.count;
-		totalPrice += item.count * item.price;
-		return item; // Return the item for further use
-	});
+
+	const { cartListContent, itemCount, totalPrice } = useMemo(() => {
+		let itemCount = 0;
+		let totalPrice = 0;
+
+		const cartItems = Object.values(cart.items).map((item) => {
+			itemCount += item.count;
+			totalPrice += item.count * item.price;
+			return item; // Return the item for further use
+		});
+
+		const itemContent = cartItems.map((item) => (
+			<React.Fragment key={item.id}>
+				<Flex justify="space-between">
+					<Text size="sm">{item.name}</Text>
+					<ActionIcon onClick={() => handleRemoveFromCart(item.id)} size="xs">
+						<IconTrash size={32} />
+					</ActionIcon>
+				</Flex>
+				<Text size="xs" c="gray.6">
+					{item.count} x ${item.price.toFixed(2)}
+				</Text>
+				<Divider />
+			</React.Fragment>
+		));
+
+		return {
+			cartListContent: itemContent,
+			itemCount,
+			totalPrice,
+		};
+	}, [cart, handleRemoveFromCart]);
 
 	const toggleCartList = () => {
 		opened ? close() : open();
@@ -74,23 +102,7 @@ export default function CartIcon() {
 				<Popover.Dropdown>
 					{itemCount > 0 ? (
 						<Stack gap="xs">
-							{cartItems.map((item) => (
-								<React.Fragment key={item.id}>
-									<Flex justify="space-between">
-										<Text size="sm">{item.name}</Text>
-										<ActionIcon
-											onClick={() => handleRemoveFromCart(item.id)}
-											size="xs"
-										>
-											<IconTrash size={32} />
-										</ActionIcon>
-									</Flex>
-									<Text size="xs" c="gray.6">
-										{item.count} x ${item.price.toFixed(2)}
-									</Text>
-									<Divider />
-								</React.Fragment>
-							))}
+							{cartListContent}
 							<Text size="sm" fw={500}>
 								Total Price: €{totalPrice.toFixed(2)}
 							</Text>

@@ -4,19 +4,19 @@ import { IconShoppingCart } from "@tabler/icons-react";
 
 import classes from "@/styles/Buttons.module.css";
 
-interface CartButtonProps {
+interface AddtoCartButtonProps {
 	title: string;
 	startColor: string;
 	endColor: string;
 	onClick: () => void;
 }
 
-export default function CartButton({
+export default function AddtoCartButton({
 	title,
 	startColor,
 	endColor,
 	onClick,
-}: CartButtonProps) {
+}: AddtoCartButtonProps) {
 	// We use useMemo to avoid re-rendering the button when the item is already in the cart.
 	// This is because the button's gradient color is dependent on whether the item is in the cart or not.
 

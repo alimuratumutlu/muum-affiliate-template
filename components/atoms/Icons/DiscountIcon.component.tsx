@@ -5,12 +5,16 @@ import { IconStar } from "@tabler/icons-react";
 
 interface DiscountIconProps {
 	priceO: number;
-	priceR: number;
+	priceR?: number;
 }
 
 export default function DiscountIcon({ priceO, priceR }: DiscountIconProps) {
 	const discount = useMemo(() => {
-		return Math.floor(((priceO - priceR) / priceO) * 100);
+		if (priceR) {
+			return Math.floor(((priceO - priceR) / priceO) * 100);
+		} else {
+			return 0;
+		}
 	}, [priceO, priceR]);
 
 	// We check if the priceO and priceR are numbers. If not, we return null.

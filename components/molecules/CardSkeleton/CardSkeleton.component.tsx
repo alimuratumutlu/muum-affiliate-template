@@ -1,6 +1,6 @@
 import { Grid, Skeleton } from "@mantine/core";
 
-export function CardSkeleton() {
+export default function CardSkeleton() {
 	return (
 		<Grid.Col span={{ base: 12, xs: 6, sm: 6, md: 4, lg: 4, xl: 3 }} pb="md">
 			<>

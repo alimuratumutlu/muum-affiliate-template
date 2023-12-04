@@ -1,6 +1,7 @@
+import { useMemo } from "react";
 import { Paper, Box, Checkbox, Divider, Flex, Text } from "@mantine/core";
-
 import { useDispatch, useSelector } from "react-redux";
+
 import {
 	addToNumericSizeFilter,
 	removeFromNumericSizeFilter,
@@ -9,19 +10,27 @@ import {
 	selectFilter,
 } from "@/store/filter/filterSlice";
 
-interface SizeFilterProps {
-	numericSizes: string[];
-	letterSizes: string[];
-}
+import { getOrderedLetterSizes, getOrderedNumericSizes } from "@/utils/getSize";
 
-export default function SizeFilter({
-	numericSizes,
-	letterSizes,
-}: SizeFilterProps) {
+import useFilteredData from "@/hooks/useFilteredData";
+
+export default function FilterSize() {
 	const dispatch = useDispatch();
 	const filterState = useSelector(selectFilter);
+	const { uniqueSizes } = useFilteredData();
 
-	const handleNumericSizeChange = (size: string, checked: boolean) => {
+	// We prevent the calcalulation of orderedNumericSizes and orderedLetterSizes if uniqueSizes is not changed
+	const { orderedNumericSizes, orderedLetterSizes } = useMemo(() => {
+		const numericSizes = getOrderedNumericSizes(uniqueSizes);
+		const letterSizes = getOrderedLetterSizes(uniqueSizes);
+
+		return {
+			orderedNumericSizes: numericSizes,
+			orderedLetterSizes: letterSizes,
+		};
+	}, [uniqueSizes]);
+
+	const handleNumericSizeFilterChange = (size: string, checked: boolean) => {
 		if (checked) {
 			dispatch(addToNumericSizeFilter(size));
 		} else {
@@ -29,7 +38,7 @@ export default function SizeFilter({
 		}
 	};
 
-	const handleLetterSizeChange = (size: string, checked: boolean) => {
+	const handleLetterSizeFilterChange = (size: string, checked: boolean) => {
 		if (checked) {
 			dispatch(addToLetterSizeFilter(size));
 		} else {
@@ -45,14 +54,17 @@ export default function SizeFilter({
 			<Paper shadow="lg" px="sm" pb="md">
 				<h4>Numeric Sizes</h4>
 				<Flex wrap="wrap" gap={5}>
-					{numericSizes?.map((size) => (
+					{orderedNumericSizes?.map((size: string) => (
 						<Box key={size} mb={6} w={60}>
 							<Checkbox
 								label={size}
 								iconColor="white"
 								checked={filterState.sizesNumeric.includes(size)}
 								onChange={(event) =>
-									handleNumericSizeChange(size, event.currentTarget.checked)
+									handleNumericSizeFilterChange(
+										size,
+										event.currentTarget.checked
+									)
 								}
 							/>
 						</Box>
@@ -61,14 +73,17 @@ export default function SizeFilter({
 				<Divider my="sm" variant="dashed" />
 				<h4>Letter Sizes</h4>
 				<Flex wrap="wrap">
-					{letterSizes?.map((size) => (
+					{orderedLetterSizes?.map((size: string) => (
 						<Box key={size} mb={6} w={85}>
 							<Checkbox
 								label={size}
 								iconColor="white"
 								checked={filterState.sizesLetter.includes(size)}
 								onChange={(event) =>
-									handleLetterSizeChange(size, event.currentTarget.checked)
+									handleLetterSizeFilterChange(
+										size,
+										event.currentTarget.checked
+									)
 								}
 							/>
 						</Box>

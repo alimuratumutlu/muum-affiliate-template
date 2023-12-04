@@ -3,7 +3,9 @@ import {
 	useComputedColorScheme,
 	useMantineColorScheme,
 } from "@mantine/core";
+
 import { IconSun, IconMoon } from "@tabler/icons-react";
+
 import cx from "clsx";
 
 import classes from "@/styles/Icons.module.css";

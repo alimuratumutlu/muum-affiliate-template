@@ -2,24 +2,28 @@
 	flex: 1;
 }
 
-.checkboxButton {
-	border: rem(1px) solid
-		light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
-	padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
-	border-radius: var(--mantine-radius-md);
-	font-weight: 500;
-	transition: color 100ms ease, background-color 100ms ease,
-		border-color 100ms ease;
-	cursor: pointer;
+.controls {
+	margin-top: var(--mantine-spacing-lg);
+	display: flex;
+	justify-content: center;
 
-	&[data-checked] {
-		background-color: var(--mantine-color-blue-filled);
-		border-color: var(--mantine-color-blue-filled);
-		color: var(--mantine-color-white);
+	@media (max-width: 30em) {
+		flex-direction: column;
+	}
+}
+
+.control {
+	&:not(:first-of-type) {
+		margin-left: var(--mantine-spacing-md);
 	}
 
-	& * {
-		pointer-events: none;
-		user-select: none;
+	@media (max-width: 30em) {
+		height: rem(42px);
+		font-size: var(--mantine-font-size-md);
+
+		&:not(:first-of-type) {
+			margin-top: var(--mantine-spacing-md);
+			margin-left: 0;
+		}
 	}
 }

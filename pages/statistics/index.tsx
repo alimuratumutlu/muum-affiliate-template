@@ -1,6 +1,4 @@
-import React from "react";
-
-import useStatistics from "@/hooks/useStatistics";
+import { IconCircleCheck } from "@tabler/icons-react";
 import {
 	Container,
 	Divider,
@@ -10,7 +8,8 @@ import {
 	ThemeIcon,
 	rem,
 } from "@mantine/core";
-import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
+
+import useStatistics from "@/hooks/useStatistics";
 // TODO: Charts will be added
 
 export default function Statistics() {

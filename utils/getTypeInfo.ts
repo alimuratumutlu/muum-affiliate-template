@@ -7,3 +7,7 @@ export const isNumericSize = (size: string) => {
 		) === -1
 	);
 };
+
+export const isLetterSize = (size: string) => {
+	return !isNumericSize(size);
+};

@@ -1,11 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 
-import { HeroText } from "@/components/organisms/Hero/Hero.component";
+import { Hero, Features } from "@/components";
 
 import styles from "@/styles/Home.module.css";
-
-// TODO: Landing page UI will be added here
 
 export default function Home() {
 	return (
@@ -16,31 +13,9 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<HeroText />
 			<main className={`${styles.main}`}>
-				<div className={styles.description}>
-					<p>
-						Get started by editing&nbsp;
-						<code className={styles.code}>pages/index.tsx</code>
-					</p>
-					<div>
-						<a
-							href="https://vercel.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							By{" "}
-							<Image
-								src="/vercel.svg"
-								alt="Vercel Logo"
-								className={styles.vercelLogo}
-								width={100}
-								height={24}
-								priority
-							/>
-						</a>
-					</div>
-				</div>
+				<Hero />
+				<Features />
 			</main>
 		</>
 	);

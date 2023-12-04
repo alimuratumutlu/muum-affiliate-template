@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import { Container, Group, Anchor, Divider } from "@mantine/core";
-import Logo from "@/components/atoms/Logo/Logo.component";
+
+import { Logo } from "@/components";
 
 import { FooterRoutes } from "@/routes/FooterRoutes";
 
 import classes from "./Footer.module.css";
 
-export function Footer() {
+export default function Footer() {
 	// We are mapping the links not to cause re-render isssues when the component is updated
 	const items = useMemo(
 		() =>

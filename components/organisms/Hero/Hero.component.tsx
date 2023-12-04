@@ -1,12 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Title, Text, Button, Container } from "@mantine/core";
+import { Title, Text, Container } from "@mantine/core";
+
+import { GithubButton, MuumButton } from "@/components";
 import { Dots } from "./Hero.dots";
 
 import classes from "./Hero.module.css";
 
-export function HeroText() {
+export default function HeroText() {
 	return (
-		<Container className={classes.wrapper} size={1400}>
+		<Container className={classes.wrapper} size={1400} mt="xl">
 			<Dots className={classes.dots} style={{ left: 0, top: 0 }} />
 			<Dots className={classes.dots} style={{ left: 60, top: 0 }} />
 			<Dots className={classes.dots} style={{ left: 0, top: 140 }} />
@@ -38,25 +40,9 @@ export function HeroText() {
 					</Text>
 				</Container>
 
-				{/*TODO: Update the urls for the buttons*/}
-
 				<div className={classes.controls}>
-					<Button
-						className={classes.control}
-						size="lg"
-						variant="default"
-						color="gray"
-					>
-						See on Gitbub
-					</Button>
-					<Button
-						className={classes.control}
-						size="lg"
-						variant="gradient"
-						gradient={{ from: "blue", to: "cyan", deg: 226 }}
-					>
-						About me
-					</Button>
+					<GithubButton />
+					<MuumButton />
 				</div>
 			</div>
 		</Container>

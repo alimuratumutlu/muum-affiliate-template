@@ -1,20 +1,27 @@
+import { useMemo } from "react";
+import Link from "next/link";
+
 import { Group, Burger, Container } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-// TODO: Import and Export Atoms, Molecules, Organisms and Templates
+import { Logo, ThemeIcon, AutoComplete, CartIcon } from "@/components";
 
-import Logo from "@/components/atoms/Logo/Logo.component";
-import ThemeIcon from "@/components/atoms/Icons/ThemeIcon.component";
-import AutoComplete from "@/components/molecules/AutoComplete/AutoComplete.component";
-import HeaderLinks from "@/components/molecules/HeaderLinks/HeaderLinks.component";
-import CartIcon from "@/components/atoms/Icons/CartIcon.component";
+import { HeaderRoutes } from "@/routes/HeaderRoutes";
 
 import classes from "./Header.module.css";
 
 // TODO: Mobile menu visibility
 
-export function HeaderSearch() {
+export default function Header() {
 	const [opened, { toggle }] = useDisclosure(false);
+
+	const headerLinks = useMemo(() => {
+		return HeaderRoutes.map((link) => (
+			<Link key={link.label} href={link.link} className={classes.link}>
+				{link.label}
+			</Link>
+		));
+	}, []);
 
 	return (
 		<Container size={1400} className={classes.wrapper}>
@@ -32,7 +39,7 @@ export function HeaderSearch() {
 
 					<Group>
 						<Group ml={50} gap={5} visibleFrom="sm">
-							<HeaderLinks />
+							{headerLinks}
 						</Group>
 						<AutoComplete />
 						<ThemeIcon />

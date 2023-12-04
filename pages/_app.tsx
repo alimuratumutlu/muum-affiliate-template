@@ -29,8 +29,7 @@ import { Notifications } from "@mantine/notifications";
 import { theme } from "@/styles/theme";
 import { store } from "@/store";
 
-import { HeaderSearch } from "@/components/organisms/Header/Header.component";
-import { Footer } from "@/components/organisms/Footer/Footer.component";
+import { Header, Footer } from "@/components";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [queryClient] = useState(() => new QueryClient());
@@ -43,17 +42,15 @@ export default function App({ Component, pageProps }: AppProps) {
 						<Notifications />
 						<AppShell header={{ height: 80 }}>
 							<AppShell.Header>
-								<HeaderSearch />
+								<Header />
 							</AppShell.Header>
 							<Container
 								size={1400}
 								style={{ minHeight: "calc(100vh - 80px)" }}
 							>
 								<Component {...pageProps} />
-							</Container>
-							<AppShell.Footer>
 								<Footer />
-							</AppShell.Footer>
+							</Container>
 						</AppShell>
 					</MantineProvider>
 				</HydrationBoundary>

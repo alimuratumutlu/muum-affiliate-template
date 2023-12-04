@@ -7,10 +7,7 @@ import {
 	setSortByPrice,
 } from "@/store/filter/filterSlice";
 
-// TODO: Discount filtering will be added
-// TODO: Free shipping filtering will be added
-
-export function TopFilter() {
+export default function FilterPrice() {
 	const dispatch = useDispatch();
 	const { sortByPrice, showOnlyDiscounted } = useSelector(selectFilter);
 
