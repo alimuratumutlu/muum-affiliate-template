@@ -3,12 +3,12 @@ import { IconSearch } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectFilter, setSearchTerm } from "@/store/filter/filterSlice";
-
-/* TODO: Apply the search component */
+import useFilteredData from "@/hooks/useFilteredData";
 
 export default function AutoComplete() {
-	const dispatch = useDispatch();
+	const { uniqueBrands } = useFilteredData();
 
+	const dispatch = useDispatch();
 	const filterState = useSelector(selectFilter);
 
 	const handleSearchChange = (value: string) => {
@@ -21,17 +21,7 @@ export default function AutoComplete() {
 			leftSection={
 				<IconSearch style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
 			}
-			data={[
-				"T-Shirt",
-				"Wellensteyn",
-				"REVIEW",
-				"Wollmantel",
-				"s.Oliver Premium",
-				"Neo Noir",
-				"Laona",
-				"Apricot",
-				"Mariposa",
-			]}
+			data={Array.from(uniqueBrands)}
 			visibleFrom="xs"
 			onChange={handleSearchChange}
 			value={filterState.searchTerm}
