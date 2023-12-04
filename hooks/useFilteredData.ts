@@ -63,7 +63,8 @@ const useFilteredData = () => {
 						.includes(filterState.searchTerm.toLowerCase()));
 
 			const discountMatches =
-				!filterState.showOnlyDiscounted || product.priceR < product.priceO;
+				!filterState.showOnlyDiscounted ||
+				(product.priceR !== undefined && product.priceR < product.priceO);
 
 			return (
 				brandMatches &&
