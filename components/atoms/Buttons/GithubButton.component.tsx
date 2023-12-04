@@ -17,7 +17,7 @@ export default function GithubButton() {
 				window.open(GITHUB_REPO_URL, "_blank", "noopener noreferrer")
 			}
 		>
-			See on Gitbub
+			See on Github
 		</Button>
 	);
 }
