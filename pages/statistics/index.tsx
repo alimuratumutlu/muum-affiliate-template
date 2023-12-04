@@ -12,8 +12,6 @@ import {
 
 import useStatistics from "@/hooks/useStatistics";
 
-// TODO: Charts will be added
-
 export default function Statistics() {
 	const {
 		mostProductsUnder40Brand,
