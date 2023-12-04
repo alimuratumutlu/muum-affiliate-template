@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { IconShoppingCartBolt, IconTrash } from "@tabler/icons-react";
+import { IconShoppingCart, IconTrash } from "@tabler/icons-react";
 import {
 	Popover,
 	Text,
@@ -17,6 +17,7 @@ import { selectCart, removeFromCart } from "@/store/cart/cartSlice";
 import cx from "clsx";
 
 import classes from "@/styles/Icons.module.css";
+import React from "react";
 
 export default function CartIcon() {
 	const dispatch = useDispatch();
@@ -45,13 +46,7 @@ export default function CartIcon() {
 	};
 
 	return (
-		<Popover
-			width={400}
-			position="bottom"
-			withArrow
-			shadow="md"
-			opened={opened}
-		>
+		<Popover width={400} position="bottom-end" shadow="lg" opened={opened}>
 			<Indicator
 				label={itemCount}
 				color="red"
@@ -61,34 +56,43 @@ export default function CartIcon() {
 				<Popover.Target>
 					<Button
 						variant="default"
-						size="sm"
+						size="md"
 						p="xs"
 						aria-label="Cart Icon"
 						onClick={toggleCartList}
 					>
-						<IconShoppingCartBolt className={cx(classes.icon, classes.light)} />
-						<IconShoppingCartBolt className={cx(classes.icon, classes.dark)} />
+						<IconShoppingCart
+							className={cx(classes.icon, classes.light)}
+							size={16}
+						/>
+						<IconShoppingCart
+							className={cx(classes.icon, classes.dark)}
+							size={16}
+						/>
 					</Button>
 				</Popover.Target>
 				<Popover.Dropdown>
 					{itemCount > 0 ? (
 						<Stack gap="xs">
 							{cartItems.map((item) => (
-								<Flex key={item.id} justify="space-between">
-									<Text size="sm">
-										{item.name} - {item.count} x ${item.price.toFixed(2)}
+								<React.Fragment key={item.id}>
+									<Flex justify="space-between">
+										<Text size="sm">{item.name}</Text>
+										<ActionIcon
+											onClick={() => handleRemoveFromCart(item.id)}
+											size="xs"
+										>
+											<IconTrash size={32} />
+										</ActionIcon>
+									</Flex>
+									<Text size="xs" c="gray.6">
+										{item.count} x ${item.price.toFixed(2)}
 									</Text>
-									<ActionIcon
-										onClick={() => handleRemoveFromCart(item.id)}
-										size="xs"
-									>
-										<IconTrash size={16} />
-									</ActionIcon>
-								</Flex>
+									<Divider />
+								</React.Fragment>
 							))}
-							<Divider />
 							<Text size="sm" fw={500}>
-								Total Price: ${totalPrice.toFixed(2)}
+								Total Price: €{totalPrice.toFixed(2)}
 							</Text>
 						</Stack>
 					) : (

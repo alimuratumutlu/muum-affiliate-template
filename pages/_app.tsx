@@ -21,6 +21,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // We are using Mantine UI for this project so we need to wrap our app with the MantineProvider
 // https://mantine.dev/core/getting-started/#mantineprovider
 
+// TODO: On page SEO Head will be added here
+
 import { AppShell, Container, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 

@@ -13,7 +13,7 @@ export default function PriceText({ priceO, priceR }: PriceTextProps) {
 	if (priceO === priceR || typeof priceR !== "number" || priceO < priceR) {
 		return (
 			<Text fz="xl" fw={700} style={{ lineHeight: 1 }}>
-				{"$"}
+				{"€"}
 				{priceO}
 			</Text>
 		);
@@ -24,7 +24,7 @@ export default function PriceText({ priceO, priceR }: PriceTextProps) {
 	return (
 		<div>
 			<Text fz="xl" fw={700} style={{ lineHeight: 1 }} c="red">
-				{"$"}
+				{"€"}
 				{priceR}
 			</Text>
 			<Text
@@ -35,7 +35,7 @@ export default function PriceText({ priceO, priceR }: PriceTextProps) {
 				style={{ lineHeight: 1 }}
 				mt={3}
 			>
-				{"$"}
+				{"€"}
 				{priceO}
 			</Text>
 		</div>

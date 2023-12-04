@@ -1,6 +1,8 @@
 import { Group, Burger, Container } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
+// TODO: Import and Export Atoms, Molecules, Organisms and Templates
+
 import Logo from "@/components/atoms/Logo/Logo.component";
 import ThemeIcon from "@/components/atoms/Icons/ThemeIcon.component";
 import AutoComplete from "@/components/molecules/AutoComplete/AutoComplete.component";
@@ -8,6 +10,8 @@ import HeaderLinks from "@/components/molecules/HeaderLinks/HeaderLinks.componen
 import CartIcon from "@/components/atoms/Icons/CartIcon.component";
 
 import classes from "./Header.module.css";
+
+// TODO: Mobile menu visibility
 
 export function HeaderSearch() {
 	const [opened, { toggle }] = useDisclosure(false);
